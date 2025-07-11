@@ -25,24 +25,3 @@ targets:
     variables:
       env_name: prod
       data_path: /mnt/prod/data
-
-resources:
-  jobs:
-    retail_processing_job:
-      name: Retail Processing Job
-      tasks:
-        - task_key: retail_processing_task
-          notebook_task:
-            notebook_path: notebooks/retail_processing.py
-          new_cluster:
-            serverless: true      # <-- This enables serverless compute
-            spark_version: 13.3.x-scala2.12
-            data_security_mode: LEGACY_SINGLE_USER
-            runtime_engine: PHOTON
-            # num_workers is ignored for serverless, so can be omitted
-
-variables:
-  # Define global variables here if needed
-
-secrets:
-  # Define secret scopes if needed
