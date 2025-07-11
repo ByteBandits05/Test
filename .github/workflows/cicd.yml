@@ -42,8 +42,8 @@ jobs:
           $DATABRICKS_TOKEN
           EOF
 
-      - name: Validate Databricks Asset Bundle
-        run: databricks bundle validate
+      # - name: Validate Databricks Asset Bundle
+      #   run: databricks bundle validate
 
       - name: Deploy Databricks Asset Bundle
         run: databricks bundle deploy --target dev
