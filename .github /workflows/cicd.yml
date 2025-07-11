@@ -1,0 +1,53 @@
+
+# ============================================
+# FILE: .github/workflows/cicd_template.yml
+# Purpose: Simple CI/CD to deploy Databricks Asset Bundle to AWS Databricks workspace
+# ============================================
+
+name: Databricks CI/CD Simple Pipeline
+
+on:
+  workflow_dispatch:
+    branches: [dev] 
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || echo "No requirements.txt found"
+          pip install databricks-cli
+
+      - name: Configure Databricks CLI
+        env:
+          DATABRICKS_HOST: https://dbc-d56de9ca-1926.cloud.databricks.com/
+          DATABRICKS_TOKEN: dapi5fb62eab80e90679df4a1b68ad8a2be9
+        run: |
+          databricks configure --token <<EOF
+          $DATABRICKS_HOST
+          $DATABRICKS_TOKEN
+          EOF
+
+      - name: Validate Databricks Asset Bundle
+        run: databricks bundle validate
+
+      - name: Deploy Databricks Asset Bundle
+        run: databricks bundle deploy --target dev
+
+      - name: Smoke test
+        run: |
+          echo "Run some smoke tests here"
