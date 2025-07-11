@@ -46,7 +46,7 @@ jobs:
 
       # Deploy Databricks Asset Bundle
       - name: Deploy DAB
-        run: databricks bundle deploy --target prod
+        run: databricks bundle deploy --target dev
 
       # Run smoke tests (optional)
       - name: Smoke test
