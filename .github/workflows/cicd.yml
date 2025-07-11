@@ -6,6 +6,7 @@
 name: Databricks CI/CD Simple Pipeline
 
 on:
+  workflow_dispatch:
   push:
     branches: [dev]
   pull_request:
