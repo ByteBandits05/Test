@@ -12,20 +12,20 @@ bundle:
 targets:
   dev:
     workspace:
-      host: https://<dev-workspace-url>
+      host: https://dbc-d56de9ca-1926.cloud.databricks.com/
     default: true
     variables:
       env_name: dev
       data_path: /mnt/dev/data
   qa:
     workspace:
-      host: https://<qa-workspace-url>
+      host: https://dbc-d56de9ca-1926.cloud.databricks.com/
     variables:
       env_name: qa
       data_path: /mnt/qa/data
   prod:
     workspace:
-      host: https://<prod-workspace-url>
+      host: https://dbc-d56de9ca-1926.cloud.databricks.com/
     variables:
       env_name: prod
       data_path: /mnt/prod/data
