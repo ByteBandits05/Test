@@ -1,14 +1,10 @@
 # =========================================================
 # Databricks Asset Bundle Configuration
 # =========================================================
-# See: https://docs.databricks.com/aws/en/dev-tools/bundles/settings
 
 bundle:
   name: retail_analytics_bundle
-  # tags: [retail, analytics]
-  # description: Databricks bundle for retail analytics
 
-# --- Environment Targets ---
 targets:
   dev:
     workspace:
@@ -30,7 +26,6 @@ targets:
       env_name: prod
       data_path: /mnt/prod/data
 
-# --- Resources ---
 resources:
   jobs:
     retail_processing_job:
@@ -39,16 +34,15 @@ resources:
         - task_key: retail_processing_task
           notebook_task:
             notebook_path: notebooks/retail_processing.py
-          cluster:
+          new_cluster:
+            serverless: true      # <-- This enables serverless compute
             spark_version: 13.3.x-scala2.12
-            node_type_id: Standard_DS3_v2
-            num_workers: 1
+            data_security_mode: LEGACY_SINGLE_USER
+            runtime_engine: PHOTON
+            # num_workers is ignored for serverless, so can be omitted
 
-
-# --- Global Variables ---
 variables:
   # Define global variables here if needed
 
-# --- Secrets ---
 secrets:
   # Define secret scopes if needed
