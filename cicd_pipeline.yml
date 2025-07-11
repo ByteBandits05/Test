@@ -1,4 +1,4 @@
-# ============================================
+## ============================================
 # FILE: .github/workflows/cicd_template.yml
 # Purpose: Simple CI/CD to deploy Databricks Asset Bundle to AWS Databricks workspace
 # ============================================
