@@ -1,5 +1,5 @@
 # =========================================================
-# Databricks Asset Bundle Configuration
+# Databricks Asset Bundle Configuration (No Jobs)
 # =========================================================
 
 bundle:
@@ -10,11 +10,13 @@ targets:
     workspace:
       host: https://dbc-d56de9ca-1926.cloud.databricks.com/
       root_path: /workspace/pipa/
-      
+    default: true
+
   qa:
     workspace:
       host: https://dbc-d56de9ca-1926.cloud.databricks.com/
       root_path: /workspace/pipa/
+
   prod:
     workspace:
       host: https://dbc-d56de9ca-1926.cloud.databricks.com/
