@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt || echo "No requirements.txt found"
-          pip install databricks-cli
+          pip install databricks-cli>=0.205.0
 
       - name: Configure Databricks CLI
         env:
