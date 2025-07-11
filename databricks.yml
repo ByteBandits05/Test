@@ -1,0 +1,54 @@
+# =========================================================
+# Databricks Asset Bundle Configuration
+# =========================================================
+# See: https://docs.databricks.com/aws/en/dev-tools/bundles/settings
+
+bundle:
+  name: retail_analytics_bundle
+  # tags: [retail, analytics]
+  # description: Databricks bundle for retail analytics
+
+# --- Environment Targets ---
+targets:
+  dev:
+    workspace:
+      host: https://<dev-workspace-url>
+    default: true
+    variables:
+      env_name: dev
+      data_path: /mnt/dev/data
+  qa:
+    workspace:
+      host: https://<qa-workspace-url>
+    variables:
+      env_name: qa
+      data_path: /mnt/qa/data
+  prod:
+    workspace:
+      host: https://<prod-workspace-url>
+    variables:
+      env_name: prod
+      data_path: /mnt/prod/data
+
+# --- Resources ---
+resources:
+  jobs:
+    retail_processing_job:
+      name: Retail Processing Job
+      tasks:
+        - task_key: retail_processing_task
+          notebook_task:
+            notebook_path: notebooks/retail_processing.py
+          cluster:
+            spark_version: 13.3.x-scala2.12
+            node_type_id: Standard_DS3_v2
+            num_workers: 1
+
+
+# --- Global Variables ---
+variables:
+  # Define global variables here if needed
+
+# --- Secrets ---
+secrets:
+  # Define secret scopes if needed
