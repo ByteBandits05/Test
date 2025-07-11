@@ -1,3 +1,4 @@
+
 # ============================================
 # FILE: .github/workflows/cicd_template.yml
 # Purpose: Simple CI/CD to deploy Databricks Asset Bundle to AWS Databricks workspace
@@ -7,6 +8,7 @@ name: Databricks CI/CD Simple Pipeline
 
 on:
   workflow_dispatch:
+    branches: [dev] 
   push:
     branches: [dev]
   pull_request:
@@ -28,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt || echo "No requirements.txt found"
-          pip install databricks-cli
+          pip install databricks-cli>=0.205.0
 
       - name: Configure Databricks CLI
         env:
